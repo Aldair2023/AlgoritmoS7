@@ -5,6 +5,8 @@
  */
 package algoritmosecuencial;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aldair
@@ -17,7 +19,7 @@ public class Ejercicio7 extends javax.swing.JFrame {
     public Ejercicio7() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+        txtAn.requestFocusInWindow();
     }
 
     /**
@@ -33,10 +35,10 @@ public class Ejercicio7 extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cmdBorrar = new javax.swing.JTextField();
-        cmdCalcular = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtBono = new javax.swing.JTextField();
+        txtAn = new javax.swing.JTextField();
+        cmdCalcular = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -62,18 +64,34 @@ public class Ejercicio7 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         jLabel3.setText("Total De Bonificacion");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
-        jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 140, 50));
-        jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, 40));
+        jPanel1.add(txtBono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 140, 50));
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Calcular");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+        txtAn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtAn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, 40));
 
-        jButton3.setBackground(new java.awt.Color(0, 153, 153));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Borrar");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 70, -1));
+        cmdCalcular.setBackground(new java.awt.Color(0, 153, 153));
+        cmdCalcular.setForeground(new java.awt.Color(255, 255, 255));
+        cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, -1, -1));
+
+        cmdBorrar.setBackground(new java.awt.Color(0, 153, 153));
+        cmdBorrar.setForeground(new java.awt.Color(255, 255, 255));
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 70, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
@@ -99,9 +117,48 @@ public class Ejercicio7 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
         System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+        
+        double res1, bono;
+        
+        if(txtAn.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null,"por favor ingrese los años de trabajo","ERROR",JOptionPane.WARNING_MESSAGE);
+        }else
+            
+        try{
+        bono=Double.parseDouble(txtAn.getText());
+        
+        res1=(100000+bono*120000)-120000;
+        
+        txtBono.setText(""+res1);
+        
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "la cantidad de años es incorrecto, por favor verifique","ERROR",JOptionPane.ERROR_MESSAGE);
+        
+        }
+    }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtAn.setText("");
+        txtBono.setText("");
+        
+        txtAn.requestFocusInWindow();
+        
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtAnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnKeyTyped
+        char c=evt.getKeyChar();
+        
+        if(!Character.isDigit(evt.getKeyChar())&& evt.getKeyChar() != '.'){
+            getToolkit();
+            
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAnKeyTyped
 
     /**
      * @param args the command line arguments
@@ -139,15 +196,15 @@ public class Ejercicio7 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField cmdBorrar;
-    private javax.swing.JTextField cmdCalcular;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCalcular;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtAn;
+    private javax.swing.JTextField txtBono;
     // End of variables declaration//GEN-END:variables
 }
