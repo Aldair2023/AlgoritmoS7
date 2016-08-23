@@ -86,9 +86,12 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="txtBono">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="210" y="140" width="140" height="50"/>
+              <AbsoluteConstraints x="210" y="140" width="140" height="40"/>
             </Constraint>
           </Constraints>
         </Component>

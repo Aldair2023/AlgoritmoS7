@@ -64,7 +64,9 @@ public class Ejercicio7 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         jLabel3.setText("Total De Bonificacion");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
-        jPanel1.add(txtBono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 140, 50));
+
+        txtBono.setEditable(false);
+        jPanel1.add(txtBono, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 140, 40));
 
         txtAn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -136,7 +138,7 @@ public class Ejercicio7 extends javax.swing.JFrame {
         txtBono.setText(""+res1);
         
         }
-        catch(Exception e){
+        catch(Exception j){
             JOptionPane.showMessageDialog(null, "la cantidad de años es incorrecto, por favor verifique","ERROR",JOptionPane.ERROR_MESSAGE);
         
         }
@@ -151,8 +153,6 @@ public class Ejercicio7 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void txtAnKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnKeyTyped
-        char c=evt.getKeyChar();
-        
         if(!Character.isDigit(evt.getKeyChar())&& evt.getKeyChar() != '.'){
             getToolkit();
             
